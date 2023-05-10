@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Face3Icon from '@mui/icons-material/Face3';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
 const Container = styled.div`
   height: 135px;
-  background-color: #5b08a9;
-  z-index: 2;
+  background-color: #f76a31;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
@@ -110,11 +112,6 @@ const Name = styled.span`
     color: white;
 `;
 
-const UserName = styled.span`
-    font-size: 15px;
-    font-weight: 400;
-    color: grey;
-`;
 
 const IconContainer = styled.div`
     display: flex;
@@ -147,7 +144,7 @@ export const Navbar = () => {
                 </LogoContaier>
                 <SearchContainer>
                 <SearchIcon style={{color: "gray", fontSize: 26}} />
-                    <Input placeholder="Search for friends, news and more" />
+                    <Input placeholder="Search by size, color or style" />
                 </SearchContainer>                
             </Left>
             <Right>
@@ -157,18 +154,17 @@ export const Navbar = () => {
                 </ProfileContainer>
                 <NameContainer>
                     <Name>Yayo Amigo</Name>
-                    <UserName>@yayoamigo</UserName>
                 </NameContainer>
                 </DataContainer>
                 <IconContainer>
                     <Icon>
-                        <SettingsOutlinedIcon style={{color: "black", fontSize: 26}} />
+                        <Face3Icon style={{color: "black", fontSize: 26}} />
                     </Icon>
                     <Icon>
                         <NotificationsActiveIcon style={{color: "black", fontSize: 26}} />
                     </Icon>
                     <Icon>
-                        <LightbulbIcon style={{color: "black", fontSize: 26}} />
+                        <ShoppingCartTwoToneIcon style={{color: "black", fontSize: 26}} />
                     </Icon>
                 </IconContainer>
             </Right>
