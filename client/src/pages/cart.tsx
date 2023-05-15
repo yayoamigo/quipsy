@@ -2,6 +2,10 @@ import {useSelector} from "react-redux";
 import styled from "styled-components";
 import { Navbar } from "../components/Navbar";
 import { popularProducts } from "../Data";
+import { Remove } from "@mui/icons-material";
+import { removeItem } from "../redux/cartDucks";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 const Wrapper = styled.div`
     padding: 0px;
@@ -13,48 +17,88 @@ const Wrapper = styled.div`
 const CartItems = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    width: 50%;
+    padding-top: 200px;
 `;
 
-const CartItem = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+// Styled components
+const CartItemContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
+
+const ProductImage = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin-left: 10px;
+`;
+
+const ProductInfo = styled.div`
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+`;
+
+const ProductName = styled.p`
+  margin-right: 10px;
+`;
+
+const ProductPrice = styled.p`
+  margin-right: 10px;
+`;
+
+const Total = styled.p`
+  margin-top: 20px;
+  text-align: center;
+`;
+
+const Pay = styled.button`
+    padding: 10px;
     width: 100%;
-    padding: 20px;
-    border-bottom: 1px solid lightgray;
+    border: 2px solid teal;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 500;
 `;
 
-const Image = styled.img`
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-`;
-
-const Info = styled.div`
-    flex: 1;
-    padding: 0px 20px;
-`;
-
-//create the component
 const Cart = () => {
-    const cart = useSelector((state: any) => state.cart);
-    const { products } = cart;
-    const ProductsToBuy = popularProducts.filter((item: any) => item.id === products.id);
-    console.log(products)
-    return (
-        <Wrapper>
-            <Navbar />
-            <CartItems>
-                {ProductsToBuy?.map((item: any) => (
-                    <CartItem key={item.id}>
-            </CartItem>
-                ))}
-            </CartItems>
-        </Wrapper>
-    );
+  let cart = useSelector((state: any) => state.cart.products);
+  const total = useSelector((state: any) => state.cart.total);
+
+  const handlePrint = () => {
+    console.log(cart);
+    };
+
+  const dispatch = useDispatch();
+
+  const handleRemove = (uniqueId: string, price: number, quantity: number) => {
+    dispatch(removeItem({ uniqueId, price, quantity }));
+  };
+  
+  return (
+    <Wrapper>
+      <Navbar />
+      <CartItems>
+        {cart?.map((item: any) => (
+          <CartItemContainer key={item.id}>
+            <ProductImage src={item.img} alt={item.name} />
+            <ProductInfo>
+              <ProductName>{item.name}</ProductName>
+              <ProductPrice>${item.price}</ProductPrice>
+              <p>Quantity: {item.quantity}</p>
+               <Remove onClick={() => handleRemove(item.uniqueId, item.price, item.quantity)} /> 
+            </ProductInfo>
+          </CartItemContainer>
+        ))}
+      </CartItems>
+      <Total>Total: ${total}</Total>
+        <Pay onClick={handlePrint}>Pay</Pay>
+    </Wrapper>
+  );
 };
 
 export default Cart;
-                    

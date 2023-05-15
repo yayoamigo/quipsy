@@ -94,7 +94,7 @@ const ProductPage = () => {
     }
 
    const handleAddCart = () => {
-      dispatch(addItem({ price: product!.price,  quantity: quantity, id: product!.id }));
+      dispatch(addItem({ price: product!.price,  quantity: quantity, id: product!.id, name: product!.name, img: product!.img }));
     };
 
     const handlePrint = () => {
