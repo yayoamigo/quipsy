@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import SearchIcon from '@mui/icons-material/Search';
 import Face3Icon from '@mui/icons-material/Face3';
+import FaceIcon from '@mui/icons-material/Face';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 135px;
@@ -139,9 +141,11 @@ export const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
+                <Link to={`/`}>
                 <LogoContaier>
                     <Logo src="https://firebasestorage.googleapis.com/v0/b/zucatto-6c730.appspot.com/o/Yayoamigosoy_logotype_for_socialmedia_website_whose_logo_is_a_c_2e13f396-362d-41f6-84f7-1d3bcfb56b0a-removebg-preview.png?alt=media&token=960e7346-e85a-445b-9391-14cc4ea2196b" />
                 </LogoContaier>
+                </Link>
                 <SearchContainer>
                 <SearchIcon style={{color: "gray", fontSize: 26}} />
                     <Input placeholder="Search by size, color or style" />
@@ -157,14 +161,23 @@ export const Navbar = () => {
                 </NameContainer>
                 </DataContainer>
                 <IconContainer>
+                <Link to={`/category/women`}> 
                     <Icon>
                         <Face3Icon style={{color: "black", fontSize: 26}} />
                     </Icon>
+                    </Link>
+                    <Link to={`/category/men`}> <Icon>
+                     
+                        <FaceIcon style={{color: "black", fontSize: 26}} />
+                    </Icon>
+                    </Link>
                     <Icon>
                         <NotificationsActiveIcon style={{color: "black", fontSize: 26}} />
                     </Icon>
                     <Icon>
+                        <Link to={`/cart`}>
                         <ShoppingCartTwoToneIcon style={{color: "black", fontSize: 26}} />
+                        </Link>
                     </Icon>
                 </IconContainer>
             </Right>
