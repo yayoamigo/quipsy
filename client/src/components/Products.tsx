@@ -1,22 +1,29 @@
 import Product from "./Product";
 import styled from "styled-components";
-import { popularProducts } from "../Data";
 
-const Container = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+interface ContainerProps {
+  padding: number;
+}
+
+const Container = styled.div<ContainerProps>`
+  padding-top: ${(props) => props.padding}px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  z-index: -1;
+  cursor: pointer;
 `;
 
-const Products = () => {
-    return (
-        <Container>
-            {popularProducts.map((item) => (
-                <Product item={item} key={item.id} />
-            ))}
-        </Container>
-    );
+const Products = ({ products, padding }: ContainerProps | any) => {
+  return (
+    <Container padding={padding}>
+      {products?.map((item: any) => (
+        <Product item={item} key={item.id} />
+      ))}
+    </Container>
+  );
 };
 
 export default Products;
+
+
